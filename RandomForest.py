@@ -13,9 +13,9 @@ from mlxtend.feature_selection import ExhaustiveFeatureSelector as EFS
 from sklearn.model_selection import GridSearchCV
 
 
-train = pd.read_table('/Users/e195718/3year/secondSemester/DataMining/bot/train.tsv')
-test = pd.read_table('/Users/e195718/3year/secondSemester/DataMining/bot/test.tsv')
-sample = pd.read_csv('/Users/e195718/3year/secondSemester/DataMining/bot/sample_submit.csv', header=None)
+train = pd.read_table('train.tsv')
+test = pd.read_table('test.tsv')
+sample = pd.read_csv('sample_submit.csv', header=None)
 
 trainX = train.drop('bot', axis=1)
 trainX = trainX[['id', 'default_profile', 'default_profile_image', 'friends_count', 'followers_count', 'favourites_count', 'geo_enabled', 'listed_count', 'mean_mins_between_tweets', 'mean_tweet_length']]
