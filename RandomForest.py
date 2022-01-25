@@ -16,11 +16,11 @@ sample = pd.read_csv('sample_submit.csv', header=None)
 trainX = train.drop('bot', axis=1)
 #EFSを用いて選ばれた特徴量を選択
 trainX = trainX[['default_profile', 'default_profile_image', 'friends_count', 'followers_count', 'favourites_count', 'geo_enabled', 'listed_count', 'mean_mins_between_tweets', 'mean_tweet_length']]
-#ラベル作成
+#目的変数
 y = train['bot']
 
 #テストデータのコピー
-testX = test.copy()
+testX = test[['default_profile', 'default_profile_image', 'friends_count', 'followers_count', 'favourites_count', 'geo_enabled', 'listed_count', 'mean_mins_between_tweets', 'mean_tweet_length']]
 
 #アンダーサンプリング
 positive_count_train = y.value_counts()[1]
