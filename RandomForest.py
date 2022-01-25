@@ -19,7 +19,7 @@ trainX = trainX[['default_profile', 'default_profile_image', 'friends_count', 'f
 #目的変数
 y = train['bot']
 
-#テストデータのコピー
+#テストデータの特徴量選択
 testX = test[['default_profile', 'default_profile_image', 'friends_count', 'followers_count', 'favourites_count', 'geo_enabled', 'listed_count', 'mean_mins_between_tweets', 'mean_tweet_length']]
 
 #アンダーサンプリング
