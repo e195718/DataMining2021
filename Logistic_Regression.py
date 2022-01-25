@@ -7,9 +7,10 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 
 #データの読み込み&確認
-train = pd.read_csv("/Users/e195767/VS code/SIGNATE/bot/train.tsv", sep="\t", index_col=0)
-test = pd.read_csv("/Users/e195767/VS code/SIGNATE/bot/test.tsv", sep="\t", index_col=0)
-submit = pd.read_csv("/Users/e195767/VS code/SIGNATE/bot/sample_submit.csv", index_col=0, header=None)
+path = "/Users/e195767/VS code/SIGNATE/bot/"
+train = pd.read_csv(path + "train.tsv", sep="\t", index_col=0)
+test = pd.read_csv(path + "test.tsv", sep="\t", index_col=0)
+submit = pd.read_csv(path + "sample_submit.csv", index_col=0, header=None)
 
 print(train.info())
 print(train.describe())
@@ -98,4 +99,4 @@ pred = best.predict(test)
 pred = pred.astype(np.int64)
 
 submit[1] = pred
-submit.to_csv("/Users/e195767/VS code/SIGNATE/bot/submit.csv", header=None)
+submit.to_csv(path + "submit.csv", header=None)
