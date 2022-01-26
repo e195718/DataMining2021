@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import GridSearchCV
 from imblearn.under_sampling import RandomUnderSampler
@@ -8,7 +9,7 @@ from mlxtend.feature_selection import ExhaustiveFeatureSelector as EFS
 from sklearn.model_selection import GridSearchCV
 from sklearn import svm
 
-##訓練データとテストデータ、提出用サンプルデータの読み込み
+##訓練データとテストデータ、提出用のサンプルデータの読み込み
 train = pd.read_table('train.tsv')
 test = pd.read_table('test.tsv')
 sample = pd.read_csv('sample_submit.csv', header=None)
@@ -72,5 +73,3 @@ print('TestAccuracy: {}'.format(accuracy))
 
 #提出用データに対する予測と提出ファイル(.csv)作成
 pred = clf.predict(testX)
-sample[1] = pred
-sample.to_csv('LinearSVC.csv', index=None, header=None)
