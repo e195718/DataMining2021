@@ -1,3 +1,7 @@
+'''botアカウントかどうかを判定するモデル構築を行うプログラム
+データセットは同じディレクトリ内に保存する必要がある
+'''
+
 import pandas as pd
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import GridSearchCV
@@ -42,8 +46,8 @@ rus = RandomUnderSampler(random_state=0, sampling_strategy = strategy)
 X_resampled, y_resampled = rus.fit_resample(X_train, y_train)
 y_resampled.value_counts()
 
-#グリッドサーチで調整するパラメータ
 """
+#グリッドサーチで調整するパラメータ
 parameters = {  
     'n_estimators': [600, 650, 700],     # 用意する決定木モデルの数
     'max_depth': [5, 6, 7],     # 決定木のノード深さの制限値
@@ -54,13 +58,13 @@ gridsearch = GridSearchCV(estimator = clf,        # モデル
                           cv = 5,
                           scoring = "f1"      # スコアリング
                          )   
-
+"""
+"""
 #グリッドサーチ実行し、ベストなパラメータの値を出力
 gridsearch.fit(X_train, y_train)
 print('Best params: {}'.format(gridsearch.best_params_)) 
 print('Best Score: {}'.format(gridsearch.best_score_))
 """
-
 #グリッドサーチによって求めたパラメータを引数に入力したモデル
 clf = RandomForestClassifier(max_depth=7, max_features=None, n_estimators=600)                                   
 
