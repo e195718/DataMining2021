@@ -1,5 +1,6 @@
 '''botアカウントかどうかを判定するモデル構築を行うプログラム
-データセットは同じディレクトリ内に保存する必要がある
+データセットと提出用サンプルデータは同じディレクトリ内に保存する必要がある。
+データセットはhttps://signate.jp/competitions/124/data よりダウンロード
 '''
 
 import pandas as pd
@@ -27,44 +28,62 @@ y = train['bot']
 testX = test[['default_profile', 'default_profile_image', 'friends_count', 'followers_count', 'favourites_count', 'geo_enabled', 'listed_count', 'mean_mins_between_tweets', 'mean_tweet_length']]
 
 
-#EFSで特徴量選択
 """
-clf = RandomForestClassifier()
-efs1 = EFS(clf, min_features=10, max_features=15)
-efs1 = efs1.fit(trainX, y)
-print('Best accuracy score: %.2f' % efs1.best_score_)
-print('Best subset:', efs1.best_feature_names_)
+以下でEFSで特徴量選択を行う
+実行する場合は#をはずし、上の特徴量選択を行う前に実行する必要がある
+EFS(clf)：使用するモデル
+EFS(min_features)：組み合わせる特徴量の最小の数
+EFS(max_features)：組み合わせる特徴量の最大の数
 """
+#clf = RandomForestClassifier()
+#efs1 = EFS(clf, min_features=10, max_features=15)
+#efs1 = efs1.fit(trainX, y)
+#print('Best accuracy score: %.2f' % efs1.best_score_)
+#print('Best subset:', efs1.best_feature_names_)
+
 
 #テストデータと検証用データを8:2で分割
 X_train,X_test,y_train,y_test = train_test_split(trainX,y,test_size=0.20,random_state=1)
 
-#アンダーサンプリング
+
+"""
+以下でアンダーサンプリングを行う
+実行する際には#をはずし、実行する
+トレーニングデータの目的変数botの0と1の割合を1:2に選択する
+"""
 positive_count_train = y_train.value_counts()[1]
 strategy = {0:positive_count_train*2, 1:positive_count_train}
 rus = RandomUnderSampler(random_state=0, sampling_strategy = strategy)
 X_resampled, y_resampled = rus.fit_resample(X_train, y_train)
 y_resampled.value_counts()
 
-"""
-#グリッドサーチで調整するパラメータ
-parameters = {  
-    'n_estimators': [600, 650, 700],     # 用意する決定木モデルの数
-    'max_depth': [5, 6, 7],     # 決定木のノード深さの制限値
-}
 
-gridsearch = GridSearchCV(estimator = clf,        # モデル
-                          param_grid = parameters,  # チューニングするハイパーパラメータ
-                          cv = 5,
-                          scoring = "f1"      # スコアリング
-                         )   
 """
+以下はグリッドサーチで調整するパラメータを設定する
+'パラメータ'：[比較調節数値]のように追加していくことができる
+実行する際には#を削除し実行する
 """
-#グリッドサーチ実行し、ベストなパラメータの値を出力
-gridsearch.fit(X_train, y_train)
-print('Best params: {}'.format(gridsearch.best_params_)) 
-print('Best Score: {}'.format(gridsearch.best_score_))
+
+#parameters = {  
+#    'n_estimators': [600, 650, 700],     # 用意する決定木モデルの数
+#    'max_depth': [5, 6, 7],     # 決定木のノード深さの制限値
+#}
+
+#gridsearch = GridSearchCV(estimator = clf,        # モデル
+#                          param_grid = parameters,  # チューニングするハイパーパラメータ
+#                          cv = 5,
+#                          scoring = "f1"      # スコアリング
+#                         )   
+
 """
+グリッドサーチによって選択したベストなパラメータの値を出力する
+実行する際には#を削除し実行する
+"""
+#gridsearch.fit(X_train, y_train)
+#print('Best params: {}'.format(gridsearch.best_params_)) 
+#print('Best Score: {}'.format(gridsearch.best_score_))
+
+
 #グリッドサーチによって求めたパラメータを引数に入力したモデル
 clf = RandomForestClassifier(max_depth=7, max_features=None, n_estimators=600)                                   
 
@@ -82,9 +101,8 @@ print('TrainAccuracy: {}'.format(trainaccuracy_random_forest))
 accuracy = accuracy_score(y_test, y_pred)
 print('TestAccuracy: {}'.format(accuracy))
 
-"""
+
 #提出用データに対する予測と提出ファイル(.csv)作成
 pred = clf.predict(testX)
 sample[1] = pred
 sample.to_csv('undersumpling.csv', index=None, header=None)
-"""

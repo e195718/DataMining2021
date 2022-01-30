@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module RandomForest</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>RandomForest</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/e195718/3year/secondSemester/DataMining/bot/total/DataMining2021/RandomForest.py">/Users/e195718/3year/secondSemester/DataMining/bot/total/DataMining2021/RandomForest.py</a></font></td></tr></table>
+    <p><tt>botアカウントかどうかを判定するモデル構築を行うプログラム<br>
+データセットと提出用サンプルデータは同じディレクトリ内に保存する必要がある。<br>
+データセットはhttps://signate.jp/competitions/124/data&nbsp;よりダウンロード</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="pandas.html">pandas</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>X_resampled</strong> =      default_profile  default_profile_image  ......600000         103.675676
+
+[591 rows x 9 columns]<br>
+<strong>X_test</strong> =       default_profile  default_profile_image  .....151042          74.202073
+
+[318 rows x 9 columns]<br>
+<strong>X_train</strong> =       default_profile  default_profile_image  .....33871          98.680000
+
+[1270 rows x 9 columns]<br>
+<strong>accuracy</strong> = 0.9182389937106918<br>
+<strong>clf</strong> = RandomForestClassifier(max_depth=7, max_features=None, n_estimators=600)<br>
+<strong>positive_count_train</strong> = 197<br>
+<strong>pred</strong> = array([0, 0, 0, ..., 1, 1, 0])<br>
+<strong>rus</strong> = RandomUnderSampler(random_state=0, sampling_strategy={0: 394, 1: 197})<br>
+<strong>sample</strong> =          0  1
+0        1  0
+1        4  0
+2     ...6  3172  1
+1587  3174  0
+
+[1588 rows x 2 columns]<br>
+<strong>strategy</strong> = {0: 394, 1: 197}<br>
+<strong>test</strong> =         id  statuses_count  default_profile  ......   1.000000    0.325000
+
+[1588 rows x 15 columns]<br>
+<strong>testX</strong> =       default_profile  default_profile_image  .....49367          74.050000
+
+[1588 rows x 9 columns]<br>
+<strong>train</strong> =         id  bot  statuses_count  ...  mean_tweet...   6.960000    0.484375
+
+[1588 rows x 16 columns]<br>
+<strong>trainX</strong> =       default_profile  default_profile_image  .....60317         114.359375
+
+[1588 rows x 9 columns]<br>
+<strong>trainaccuracy_random_forest</strong> = 0.9796954314720813<br>
+<strong>y</strong> = 0       0
+1       0
+2       0
+3       0
+4       ...0
+1587    0
+Name: bot, Length: 1588, dtype: int64<br>
+<strong>y_pred</strong> = array([0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,...0, 0, 1, 0,
+       0, 0, 0, 0, 1, 0, 0, 0, 0, 0])<br>
+<strong>y_resampled</strong> = 0      0
+1      0
+2      0
+3      0
+4      0
+   ...  1
+590    1
+Name: bot, Length: 591, dtype: int64<br>
+<strong>y_test</strong> = 1539    0
+1406    0
+1498    0
+1135    0
+599     ... 0
+56      0
+Name: bot, Length: 318, dtype: int64<br>
+<strong>y_train</strong> = 142     0
+1407    1
+1043    0
+1238    0
+443     ...0
+1061    0
+Name: bot, Length: 1270, dtype: int64</td></tr></table>
+</body></html>
