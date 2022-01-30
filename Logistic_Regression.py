@@ -18,11 +18,11 @@ res = train.corr()
 print(res["bot"])
 
 #可視化
-hum_df = train[train["bot"] == 0]
-bot_df = train[train["bot"] == 1]
-train["bot"].value_counts().plot.pie(explode=[0,0.2],autopct='%1.1f%%',shadow=True)
+hum_df = train[train["bot"] == 0] #botではないデータ
+bot_df = train[train["bot"] == 1] #botのデータ
+train["bot"].value_counts().plot.pie(explode=[0,0.2],autopct='%1.1f%%',shadow=True)#割合表示
 
-search_idx = "friends_count"
+search_idx = "friends_count" #調べたいデータの列名
 
 plt.hist(hum_df[search_idx], alpha=0.5, label="human")
 plt.hist(bot_df[search_idx], alpha=0.5, label="bot")
@@ -46,12 +46,25 @@ ss_X_train, ss_X_test, ss_y_train, ss_y_test = train_test_split(ss_features, tar
 
 #アンダーサンプリング
 from imblearn.under_sampling import RandomUnderSampler
-positive_count_train = ss_y_train.value_counts()[1]
-strategy = {0:positive_count_train*2, 1:positive_count_train}
+positive_count_train = ss_y_train.value_counts()[1] #botのデータ数確認
+strategy = {0:positive_count_train*2, 1:positive_count_train} #botではないデータ:botのデータが2:1になるよう調整
 
 rus = RandomUnderSampler(random_state=0, sampling_strategy = strategy)
 X_resampled, y_resampled = rus.fit_resample(ss_X_train, ss_y_train)
 y_resampled.value_counts()
+
+#doctest
+def check_ratio(X, y):
+  """
+  >>> check_ratio(2, 1)
+  2.0
+  >>> check_ratio(ss_y_resampled.value_counts()[0], ss_y_resampled.value_counts()[1])
+  2.0
+  """
+  return X / y
+
+import doctest
+doctest.testmod()
 
 #EFS
 from mlxtend.feature_selection import ExhaustiveFeatureSelector as EFS
@@ -75,9 +88,9 @@ gscv = GridSearchCV(LogisticRegression(), params(), cv=4, verbose=2)
 gscv.fit(X_resampled, y_resampled)
 
 gscv_result = pd.DataFrame.from_dict(gscv.cv_results_)
-gscv_result.sort_values("rank_test_score")
+gscv_result.sort_values("rank_test_score") #性能が良かった順に並び替え
 
-best = gscv.best_estimator_
+best = gscv.best_estimator_ #最も性能が良かった組み合わせを選択
 pred = best.predict(ss_X_test)
 
 score = best.score(ss_X_test, ss_y_test)
