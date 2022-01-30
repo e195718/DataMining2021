@@ -11,6 +11,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from mlxtend.feature_selection import ExhaustiveFeatureSelector as EFS
 from sklearn.model_selection import GridSearchCV
+import doctest
 
 #訓練データとテストデータ、提出用サンプルデータの読み込み
 train = pd.read_table('train.tsv')
@@ -57,6 +58,16 @@ rus = RandomUnderSampler(random_state=0, sampling_strategy = strategy)
 X_resampled, y_resampled = rus.fit_resample(X_train, y_train)
 y_resampled.value_counts()
 
+def check_ratio(X, y):
+   """
+   >>> check_ratio(2, 1)
+   2.0
+   >>> check_ratio(y_resampled.value_counts()[0], y_resampled.value_counts()[1])
+   2.0
+   """
+   return X/y
+
+doctest.testmod()
 
 """
 以下はグリッドサーチで調整するパラメータを設定する
