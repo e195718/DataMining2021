@@ -58,6 +58,7 @@ rus = RandomUnderSampler(random_state=0, sampling_strategy = strategy)
 X_resampled, y_resampled = rus.fit_resample(X_train, y_train)
 y_resampled.value_counts()
 
+#アンダーサンプリン後のトレーニングデータの目的変数の割合
 def check_ratio(X, y):
    """
    >>> check_ratio(2, 1)
