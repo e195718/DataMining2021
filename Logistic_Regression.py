@@ -1,3 +1,9 @@
+"""
+botアカウントかどうかを判定するモデルの作成
+データセットはhttps://signate.jp/competitions/124/dataよりダウンロード可能
+使用したモデルはロジスティック回帰
+"""
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -66,6 +72,7 @@ def check_ratio(X, y):
 import doctest
 doctest.testmod()
 
+"""
 #EFS
 from mlxtend.feature_selection import ExhaustiveFeatureSelector as EFS
 clf = RandomForestClassifier(max_depth=2, random_state=0)
@@ -73,6 +80,7 @@ efs1 = EFS(clf, min_features=10, max_features=14)
 efs1 = efs1.fit(X_resampled,  y_resampled)
 print('Best accuracy score: %.2f' % efs1.best_score_)
 print('Best subset:', efs1.best_feature_names_)
+"""
 
 #GredSearchCV
 from sklearn.model_selection import GridSearchCV
