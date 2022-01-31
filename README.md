@@ -1,16 +1,10 @@
 # エンジニアリングデザイン演習　データマイニング班　group3のリポジトリ
-グループ3最終レポート.pdf:知能情報実験III データマイニング班 グループ3が行った実験のレポート
 
-tenki.py:sklearnのlinearSVCモデルを使用して作成したコード(今の天気を予測させる)
+・report.pdf：実験レポート
+・Linearsvc.py：sklearnのlinearSVCを使用して作成したコード
+・Logistic_Regression.py：sklearnのLogisticRegressionを使用して作成したコード
+・RandomForest.py：sklearnのRandomForestClassiferを使用して作成したコード
+・KNN.py：KNeighborsClassifierを使用して作成したコード
 
-tenki_future.py:sklearnのlinearSVCモデルを使用して作成したコード(3時間後の天気を予測させる)
-
-linearregression.py:sklearnのlinearregressionモデルを使用して作成したコード
-
-OLS.py ;s tatsmodelsのOLSを使用して作成したコード
-
-ar.py:statsmodelsのarモデルを使用して作成したコード
-
-1year.csv:データセット(気温,降水量,雲量,天気)
-
-データセットは、以下のサイトからダウンロードしたものであるhttps://www.data.jma.go.jp/gmd/risk/obsdl/
+データセットは、以下のサイトからダウンロードし、同じディレクトリに保存し実行する
+https://signate.jp/competitions/124/data
