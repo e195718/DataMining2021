@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module Logistic_Regression</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>Logistic_Regression</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/e195767/Desktop/test/DataMining2021/Logistic_Regression.py">/Users/e195767/Desktop/test/DataMining2021/Logistic_Regression.py</a></font></td></tr></table>
+    <p><tt>botアカウントかどうかを判定するモデルの作成<br>
+データセットはhttps://signate.jp/competitions/124/dataよりダウンロード可能<br>
+使用したモデルはロジスティック回帰</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="doctest.html">doctest</a><br>
+<a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top><a href="pandas.html">pandas</a><br>
+<a href="matplotlib.pyplot.html">matplotlib.pyplot</a><br>
+</td><td width="25%" valign=top><a href="seaborn.html">seaborn</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-check_ratio"><strong>check_ratio</strong></a>(X, y)</dt><dd><tt>&gt;&gt;&gt;&nbsp;<a href="#-check_ratio">check_ratio</a>(2,&nbsp;1)<br>
+2.0<br>
+&gt;&gt;&gt;&nbsp;<a href="#-check_ratio">check_ratio</a>(ss_y_resampled.value_counts()[0],&nbsp;ss_y_resampled.value_counts()[1])<br>
+2.0</tt></dd></dl>
+ <dl><dt><a name="-params"><strong>params</strong></a>()</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>X_resampled</strong> = array([[-0.36866207, -0.64641871, -0.17843446, .... -0.4907887 ,
+        -0.09845099, -0.11945055]])<br>
+<strong>best</strong> = LogisticRegression(C=1000, solver='newton-cg')<br>
+<strong>bot_df</strong> =       bot  statuses_count  default_profile  defa...    1.375000    0.183432
+
+[243 rows x 15 columns]<br>
+<strong>features</strong> =       statuses_count  default_profile  default_p...   6.960000    0.484375
+
+[1588 rows x 14 columns]<br>
+<strong>gscv</strong> = GridSearchCV(cv=4, estimator=LogisticRegression(...                'saga']},
+             verbose=2)<br>
+<strong>gscv_result</strong> =      mean_fit_time  std_fit_time  mean_score_tim...    NaN              220
+
+[220 rows x 15 columns]<br>
+<strong>hum_df</strong> =       bot  statuses_count  default_profile  defa...   6.960000    0.484375
+
+[1345 rows x 15 columns]<br>
+<strong>path</strong> = '/Users/e195767/VS code/SIGNATE/bot/'<br>
+<strong>positive_count_train</strong> = 197<br>
+<strong>pred</strong> = array([0, 0, 1, ..., 0, 0, 0])<br>
+<strong>res</strong> =                                bot  statuses_cou...    -0.012243    1.000000
+
+[15 rows x 15 columns]<br>
+<strong>rus</strong> = RandomUnderSampler(random_state=0, sampling_strategy={0: 394, 1: 197})<br>
+<strong>score</strong> = 0.8805031446540881<br>
+<strong>search_idx</strong> = 'friends_count'<br>
+<strong>ss</strong> = StandardScaler()<br>
+<strong>ss_X_test</strong> = array([[-0.33141119, -0.64641871, -0.17843446, ....  0.41556264,
+        -0.03001512, -1.18980343]])<br>
+<strong>ss_X_train</strong> = array([[-3.67697644e-01, -6.46418706e-01, -1.784...78631519e-01, -9.84509941e-02, -1.19395208e+00]])<br>
+<strong>ss_features</strong> = array([[-2.98138565e-01, -6.46418706e-01, -1.784...12043755e+00,  2.07457346e-01,  5.65903945e-01]])<br>
+<strong>ss_test</strong> = array([[-0.15335265, -0.6307831 , -0.18030461, .... -0.90406166,
+        -0.06704815, -0.05359287]])<br>
+<strong>ss_y_test</strong> = id
+1828    0
+2658    0
+976     0
+2081    0
+630  ... 0
+1279    0
+Name: bot, Length: 318, dtype: int64<br>
+<strong>ss_y_train</strong> = id
+420     0
+1846    1
+114     0
+2271    0
+1189 ...0
+1408    0
+Name: bot, Length: 1270, dtype: int64<br>
+<strong>strategy</strong> = {0: 394, 1: 197}<br>
+<strong>submit</strong> =       1
+0      
+1     0
+4     0
+5     1
+6     0
+...
+3169  0
+3172  0
+3174  0
+
+[1588 rows x 1 columns]<br>
+<strong>target</strong> = id
+0       0
+2       0
+3       0
+7       0
+12   ...0
+3175    0
+Name: bot, Length: 1588, dtype: int64<br>
+<strong>test</strong> =       statuses_count  default_profile  default_p...   1.000000    0.325000
+
+[1588 rows x 14 columns]<br>
+<strong>train</strong> =       bot  statuses_count  default_profile  defa...   6.960000    0.484375
+
+[1588 rows x 15 columns]<br>
+<strong>y_resampled</strong> = 0      0
+1      0
+2      0
+3      0
+4      0
+   ...  1
+590    1
+Name: bot, Length: 591, dtype: int64</td></tr></table>
+</body></html>
